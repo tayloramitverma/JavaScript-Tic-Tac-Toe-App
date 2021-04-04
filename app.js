@@ -15,19 +15,14 @@ restart.addEventListener('click',()=>{
 function startGame(){
     circleTurn = false;
     cells.forEach(cell =>{
-
         cell.addEventListener('click',handleClick);
-        
-        })
-        setHover();
-
+    })
+    setHover();
 }
 
-
-function handleClick(e)
-{
-let cell = e.target;
-let currentClass = circleTurn? circle:x;
+function handleClick(e){
+    let cell = e.target;
+    let currentClass = circleTurn? circle:x;
     placeMark(cell,currentClass);
     
     if(winner(currentClass)){
@@ -40,8 +35,8 @@ let currentClass = circleTurn? circle:x;
         swap();
         setHover();
     }
-
 }
+
 function placeMark(cell,currentClass){
     cell.classList.add(currentClass);
 }
@@ -60,6 +55,7 @@ function setHover(){
        board.classList.add(x);
    }
 }
+
 function winner(currentClass){
   return  win_comb.some(comb =>{
   return comb.every(index =>{
@@ -67,6 +63,7 @@ function winner(currentClass){
       })
   })
 }
+
 function isDraw(){
     return [...cells].every(cell =>{
         return cell.classList.contains(circle)||

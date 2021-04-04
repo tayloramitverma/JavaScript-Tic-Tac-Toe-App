@@ -1,0 +1,128 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.board {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  justify-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  position: relative;
+  height: 100px;
+  width: calc(100px*.9);
+  background-color: rgb(247, 243, 243);
+  border: .2rem rgb(25, 206, 238) solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          cursor: pointer;
+}
+.cell.x {
+  position: relative;
+  cursor: not-allowed;
+}
+.cell.x::before, 
+.cell.x::after{
+  background-color: black;
+}
+.board.x .cell:not(.circle):not(.x):hover::after,
+.board.x .cell:not(.circle):not(.x):hover::before{
+  background-color: lightgrey;
+}
+
+.cell.x::before, 
+.cell.x::after,
+.board.x .cell:not(.circle):not(.x):hover::after,
+.board.x .cell:not(.circle):not(.x):hover::before
+ {
+  position: absolute;
+  content: '';
+  height: calc(100px*.8);
+  width: calc(100px*.15);
+}
+
+.cell.x::after,
+.board.x .cell:hover::after
+ {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.cell.x::before,
+.board.x .cell:hover::before{
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.cell.circle{
+  cursor: not-allowed;
+}
+.cell.circle::before{
+  background-color: black;
+}
+.board.circle .cell:not(.x):not(.circle):hover::before{
+  background-color: lightgrey;
+}
+.cell.circle::before,
+ .cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after
+ {
+  position: absolute;
+  content: '';
+ 
+  border-radius: 50%;
+}
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before
+{
+  height: calc(100px*.8);
+  width: calc(100px*.8);
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after
+{
+  height: calc(100px*.6);
+  width: calc(100px*.6);
+  background-color: white;
+}
+.restart{
+  position: absolute;
+  padding: .3rem .5rem;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%,-15%);
+  cursor: pointer;
+}
+.restart:hover{
+  color: black;
+  background-color: white;
+  border: 1px black solid;
+}
